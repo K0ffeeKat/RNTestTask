@@ -3,34 +3,34 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import ImageList from '../components/homeScreenComponents/ImageList';
 import { MainStore } from '../store/mainStore';
+import { observer } from 'mobx-react';
 
-const HomeScreen = () => {
+const HomeScreen = observer(({navigation}) => {
 
-  // const [data, setData] = useState([])
   const [isLoading, setIsLoading] = useState(true);
-
-  const url = 'https://api.slingacademy.com/v1/sample-data/photos'
-
 
   useEffect(() => {
     MainStore.loadPics()
+    setIsLoading(false)
   }, [])
 
   console.log(MainStore.data)
+  console.log(isLoading)
 
   return (
     <View style={styles.screenContainer}>
-      <ImageList />
+      { isLoading ? <ActivityIndicator /> : <ImageList navigation={navigation}/>}
     </View>
   )
-}
+})
 
 export default HomeScreen
 
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
+    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#363636'
-  }
+  },
 })
