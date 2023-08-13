@@ -3,7 +3,6 @@ import { getData } from "../src/api"
 
 class Store {
     data = []
-
     currentPic = []
 
     constructor(){

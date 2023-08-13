@@ -8,6 +8,8 @@ const ViewScreen = observer(({navigation}) => {
   
   const {url, title, description, user} = MainStore.currentPic
 
+  // This piece is for correct image rendering
+
   const [ratio, setRatio] = useState(1)
 
   Image.getSize(url, (width, height) => {
@@ -33,7 +35,9 @@ const ViewScreen = observer(({navigation}) => {
           bindToBorders={true}
           onZoomAfter={this.logOutZoomState}
         >
-          <Image source={{uri: url}} style={{width: windowWidth, aspectRatio: ratio}} />
+          <Image 
+            source={{uri: url}} 
+            style={{width: windowWidth, aspectRatio: ratio}} />
       </ReactNativeZoomableView>
     </View>
   )
@@ -48,7 +52,7 @@ const styles = StyleSheet.create({
   },
   button: {
     position: 'absolute',
-    zIndex: 5,
+    zIndex: 1,
     right: 10,
     top: 10
   },

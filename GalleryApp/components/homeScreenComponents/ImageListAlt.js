@@ -2,10 +2,11 @@ import { StyleSheet, FlatList, Pressable, Image, View, Dimensions, Text } from '
 import React from 'react'
 import { MainStore } from '../../store/mainStore'
 
-const ImageList = ({navigation}) => {
+const ImageListAlt = ({navigation}) => {
 
   return (
       <FlatList
+        numColumns={2}
         scrollEnabled={true}
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.list}
@@ -25,16 +26,17 @@ const ImageList = ({navigation}) => {
   )
 }
 
-export default ImageList
+export default ImageListAlt
 
 const styles = StyleSheet.create({
     list: {
     },
     imageContainer: {
-        marginVertical: 7
+        marginVertical: 7,
+        marginHorizontal: 5
       },
       image: {
-        width: 390,
+        width: 190,
         aspectRatio: 2 / 1,
         borderRadius: 20
       }
