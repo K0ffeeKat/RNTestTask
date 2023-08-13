@@ -1,7 +1,8 @@
-import { StyleSheet, Text, View, Pressable, Image} from 'react-native'
+import { StyleSheet, Text, View, Pressable, Image, Dimensions} from 'react-native'
 import React, { useState } from 'react'
 import { observer } from 'mobx-react'
 import { MainStore } from '../store/mainStore'
+import { ReactNativeZoomableView } from '@openspacelabs/react-native-zoomable-view/'
 
 const ViewScreen = observer(({navigation}) => {
   
@@ -9,7 +10,11 @@ const ViewScreen = observer(({navigation}) => {
 
   const [ratio, setRatio] = useState(1)
 
-  Image.getSize(url, (width, height) => setRatio(width / height))
+  Image.getSize(url, (width, height) => {
+    setRatio(width/height)
+  })
+
+  const windowWidth = Dimensions.get('window').width
 
   return (
     <View style={styles.container}>
@@ -19,11 +24,17 @@ const ViewScreen = observer(({navigation}) => {
         >
         <Text>X</Text>
       </Pressable>
-
-      <View>
-        <Image source={{uri: url}} style={[styles.image, {aspectRatio: ratio}]} />
-      </View>
-
+      
+      <ReactNativeZoomableView
+          maxZoom={5}
+          zoomStep={0.5}
+          initialZoom={1}
+          minZoom={1}
+          bindToBorders={true}
+          onZoomAfter={this.logOutZoomState}
+        >
+          <Image source={{uri: url}} style={{width: windowWidth, aspectRatio: ratio}} />
+      </ReactNativeZoomableView>
     </View>
   )
 })
@@ -37,10 +48,10 @@ const styles = StyleSheet.create({
   },
   button: {
     position: 'absolute',
+    zIndex: 5,
     right: 10,
     top: 10
   },
   image: {
-    
   }
 })
