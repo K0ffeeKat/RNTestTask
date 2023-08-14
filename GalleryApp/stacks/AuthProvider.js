@@ -17,8 +17,6 @@ const AuthProvider = ({children}) => {
     setErrorMessage(null)
   };
 
-  value = [user, email, password, errorMessage]
-
   const signUp = () => {
     auth()
       .createUserWithEmailAndPassword(email, password)
@@ -47,6 +45,18 @@ const AuthProvider = ({children}) => {
     auth()
       .signOut()
       .then(() => console.log('User signed out!'));
+  }
+
+  const value = {
+    user, 
+    email, 
+    setEmail, 
+    password, 
+    setPassword, 
+    errorMessage,
+    login,
+    signUp,
+    signOut
   }
   
   return (

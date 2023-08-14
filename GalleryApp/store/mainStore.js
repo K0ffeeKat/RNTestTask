@@ -1,5 +1,4 @@
 import { action, makeObservable, observable } from "mobx"
-import { getData } from "../src/api"
 
 class Store {
     data = []
@@ -14,10 +13,11 @@ class Store {
         })
     }
 
-    loadPics = () => {
-        getData()
-        .then((json) => this.data = json.photos)
-        .catch((error) => console.error(error))
+    async loadPics() {
+        let res = await fetch('https://api.slingacademy.com/v1/sample-data/photos')
+        let object = await res.json()
+        this.data = object.photos
+        
     }
 
     updateCurrentPic = ({item}) => {

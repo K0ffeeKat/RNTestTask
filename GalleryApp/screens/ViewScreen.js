@@ -9,8 +9,6 @@ const ViewScreen = observer(({navigation}) => {
   
   const {url, title, description, user} = MainStore.currentPic
 
-  // This piece is for correct image rendering
-
   const [ratio, setRatio] = useState(1)
 
   Image.getSize(url, (width, height) => {

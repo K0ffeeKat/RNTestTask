@@ -5,7 +5,7 @@ import { MainStore } from '../store/mainStore'
 import { observer } from 'mobx-react'
 import BackIcon from '../components/homeScreenComponents/BackIcon'
 
-const InfoScreen = observer(({route, navigation}) => {
+const InfoScreen = observer(({navigation}) => {
 
   const {url, title, description, user} = MainStore.currentPic
 

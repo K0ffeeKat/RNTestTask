@@ -1,27 +1,54 @@
 import { StyleSheet, TextInput, View, Pressable, Text } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
+import { AuthContext } from '../stacks/AuthProvider'
+import Error from '../components/auth/Error'
+import Input from '../components/auth/Input'
+import Button from '../components/auth/Button'
 
-const LoginScreen = () => {
+const LoginScreen = ({navigation}) => {
+
+  const {
+    email, 
+    setEmail, 
+    password, 
+    setPassword, 
+    errorMessage, 
+    login
+  } = useContext(AuthContext)
+
   return (
     <View style={styles.main}>
+      <View>
+        {errorMessage != null ? <Error /> : null}
+      </View>
       <View style={{paddingHorizontal: 20, paddingVertical: 20}}>
-        <Text style={[styles.text, {color: 'white', textAlign: 'center'}]}>You can either use test@test.com & 1234567 or create your own account</Text>
+        <Text style={[styles.text, 
+          {color: 'white', 
+          textAlign: 'center'
+          }]}>You can either use test@test.com & 1234567 or create your own account</Text>
       </View>
       <View>
-        <TextInput 
-          placeholder='jane.doe@email.com' 
-          style={styles.textInput}/>
-        <TextInput 
-          placeholder='********' 
+        <Input 
+          onChangeText={(text) => setEmail(text)}
+          placeholder='jane.doe@email.com'/>
+        <Input 
+          onChangeText={(text) => setPassword(text)}
+          placeholder='********'
           secureTextEntry={true} 
-          style={[styles.textInput, {marginVertical: 10}]}/>
+          marginVertical={10}/>
       </View>
       <View style={styles.buttonContainer}>
-        <Pressable style={styles.button}>
-          <Text style={[styles.text, {color: '#363636'}]}>SIGN IN</Text>
-        </Pressable>
-        <Pressable style={{marginTop: 20}}>
-          <Text style={[styles.text, {color: '#d9dbda'}]}>CREATE NEW ACCOUNT</Text>
+        <Button 
+          onPress={() => {
+            login(email, password)
+          }} 
+          buttonText='SIGN IN'
+          />
+        <Pressable 
+          onPress={() => navigation.navigate('Signup')}
+          style={{marginTop: 20}}
+          >
+          <Text style={styles.text}>CREATE NEW ACCOUNT</Text>
         </Pressable>
       </View>
 
@@ -38,14 +65,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center'
   },
-  textInput: {
-    backgroundColor: '#7d7d7d',
-    borderRadius: 20,
-    paddingLeft: 20,
-    fontSize: 15, 
-    width: 350,
-    height: 50
-  },
   buttonContainer: {
     alignItems: 'center'
   },
@@ -58,6 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   text: {
-    fontFamily: 'Roboto-Medium'
+    fontFamily: 'Roboto-Medium',
+    color: '#d9dbda'
   }
 })

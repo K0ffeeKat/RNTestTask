@@ -1,8 +1,10 @@
-import { StyleSheet, FlatList, Pressable, Image, View, Dimensions, Text } from 'react-native'
+import { StyleSheet, FlatList, Pressable, Image } from 'react-native'
 import React from 'react'
+import { action } from 'mobx'
+import { observer } from 'mobx-react'
 import { MainStore } from '../../store/mainStore'
 
-const ImageListAlt = ({navigation}) => {
+const ImageListAlt = observer(({navigation}) => {
 
   return (
       <FlatList
@@ -14,17 +16,17 @@ const ImageListAlt = ({navigation}) => {
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <Pressable 
-            onPress={() => {
+            onPress={action(() => {
               navigation.navigate('Info')
               MainStore.updateCurrentPic({item})
-            }}
+            })}
               style={styles.imageContainer}>
               <Image source={{uri: item.url}} style={styles.image}/>
           </Pressable>
           )}
       />
   )
-}
+})
 
 export default ImageListAlt
 
