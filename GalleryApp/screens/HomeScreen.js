@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, ActivityIndicator, Switch, Pressable, Image, FlatList, ScrollView } from 'react-native';
+import { StyleSheet, View, ActivityIndicator, Switch} from 'react-native';
 import { useState, useEffect } from 'react';
 import React from 'react';
 import ImageList from '../components/homeScreenComponents/ImageList';

@@ -1,12 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet} from 'react-native';
 import React from 'react';
-import AppStack from './stacks/AppStack';
+import Providers from './stacks/index';
 
 
 
 const App = () => {
   return (
-      <AppStack />
+      <Providers />
   );
 };
 
