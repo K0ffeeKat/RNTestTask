@@ -11,7 +11,7 @@ const InfoScreen = observer(({route, navigation}) => {
   console.log(url)
 
   return (
-    <View>
+    <View style={{flex: 1, backgroundColor: '#363636'}}>
       <Pressable onPress={() => navigation.navigate('Home')}>
         <Text>Back</Text>
       </Pressable>

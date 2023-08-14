@@ -48,7 +48,8 @@ export default ViewScreen
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: '#363636'
   },
   button: {
     position: 'absolute',

@@ -17,16 +17,20 @@ const HomeScreen = observer(({navigation}) => {
 
   useEffect(() => {
     MainStore.loadPics()
-    // setIsLoading(false)
+    setIsLoading(false)
   }, [])
 
   return (
     <View style={styles.screenContainer}>
-      <Switch 
-        onValueChange={toggleSwitch}
-        value={isEnabled}
-      />
-      { isEnabled ? <ImageListAlt navigation={navigation} /> : <ImageList navigation={navigation} />}
+      <View style={styles.switch}>
+        <Switch 
+          onValueChange={toggleSwitch}
+          value={isEnabled}
+        />
+      </View>
+      <View style={styles.listContainer}>
+        { isEnabled ? <ImageListAlt navigation={navigation} /> : <ImageList navigation={navigation} />}
+      </View>
     </View>
   )
 })
@@ -36,8 +40,16 @@ export default HomeScreen
 const styles = StyleSheet.create({
   screenContainer: {
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#363636'
   },
+  switch: {
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginRight: 5
+  },
+  listContainer: {
+  flex: 1,
+  alignItems: 'center'
+  }
 })
