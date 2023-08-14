@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { observer } from 'mobx-react'
 import { MainStore } from '../store/mainStore'
 import { ReactNativeZoomableView } from '@openspacelabs/react-native-zoomable-view/'
+import CloseIcon from '../components/homeScreenComponents/CloseIcon'
 
 const ViewScreen = observer(({navigation}) => {
   
@@ -24,7 +25,7 @@ const ViewScreen = observer(({navigation}) => {
         style={styles.button} 
         onPress={() => navigation.navigate('Info')}
         >
-        <Text>X</Text>
+          <CloseIcon />
       </Pressable>
       
       <ReactNativeZoomableView

@@ -3,6 +3,7 @@ import React from 'react'
 import ItemInfo from '../components/homeScreenComponents/ItemInfo'
 import { MainStore } from '../store/mainStore'
 import { observer } from 'mobx-react'
+import BackIcon from '../components/homeScreenComponents/BackIcon'
 
 const InfoScreen = observer(({route, navigation}) => {
 
@@ -12,8 +13,11 @@ const InfoScreen = observer(({route, navigation}) => {
 
   return (
     <View style={{flex: 1, backgroundColor: '#363636'}}>
-      <Pressable onPress={() => navigation.navigate('Home')}>
-        <Text>Back</Text>
+      <Pressable 
+        onPress={() => navigation.navigate('Home')}
+        style={{marginLeft: 15, marginTop: 15}}
+        >
+        <BackIcon />
       </Pressable>
       <ItemInfo 
         itemData={[url, title, description, user]} 
