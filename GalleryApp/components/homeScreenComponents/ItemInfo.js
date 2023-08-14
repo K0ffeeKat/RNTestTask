@@ -14,12 +14,29 @@ const ItemInfo = ({navigation}) => {
         </Pressable>
       </View>
       <View style={styles.textContainer}>
-        <Text style={[styles.text]}>{title}</Text>
-        <Text style={[styles.text]}>{description}</Text>
+        <Text style={{
+          color: '#b6fcc9',
+          textAlign: 'center',
+          fontSize: 22,
+          fontFamily: 'Roboto-Medium',
+          fontWeight: '800',
+          paddingHorizontal: 20,
+          marginBottom: 10
+          }}>{title}</Text>
+        <Text style={{
+          textAlign: 'center',
+          color: '#d9dbda',
+          fontSize: 16,
+          paddingHorizontal: 40,
+          fontFamily: 'Roboto-Regular'
+          }}>{description}</Text>
       </View>
       <View style={styles.authorContainer}>
-        <Text>Made by </Text>
-        <Text>user {user}</Text>
+        <Text style={{
+          fontFamily: 'Roboto-Regular',
+          color: '#33f567',
+          fontSize: 13
+        }}>CREATED BY {user}</Text>
         <Image source={{uri: url}} style={styles.profilePic}/>
       </View>
     </View>
@@ -46,12 +63,16 @@ const styles = StyleSheet.create({
     },
     textContainer: {
       alignItems: 'center',
-      marginTop: 30,
+      marginTop: 20,
       marginBottom: 20
     },
     authorContainer: {
+      marginRight: 15,
+      marginTop: 30,
       flexDirection: 'row',
       marginLeft: 'auto',
       alignItems: 'center'
+    },
+    text: {
     }
 })
