@@ -5,7 +5,6 @@ import { AuthContext } from '../stacks/AuthProvider';
 import ImageList from '../components/homeScreenComponents/ImageList';
 import { MainStore } from '../store/mainStore';
 import { observer } from 'mobx-react';
-import { action } from 'mobx';
 import ImageListAlt from '../components/homeScreenComponents/ImageListAlt';
 import Button from '../components/auth/Button';
 
@@ -16,8 +15,10 @@ const HomeScreen = observer(({navigation}) => {
   const [isEnabled, setIsEnabled] = useState(false)
 
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
-
-  MainStore.loadPics()
+  
+  useEffect(() => { 
+    MainStore.loadPics()
+  }, [])
 
   return (
     <View style={styles.screenContainer}>

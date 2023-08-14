@@ -9,8 +9,6 @@ const InfoScreen = observer(({navigation}) => {
 
   const {url, title, description, user} = MainStore.currentPic
 
-  console.log(url)
-
   return (
     <View style={{flex: 1, backgroundColor: '#363636'}}>
       <Pressable 

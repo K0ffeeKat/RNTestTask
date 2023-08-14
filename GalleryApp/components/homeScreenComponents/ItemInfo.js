@@ -47,10 +47,10 @@ export default ItemInfo
 
 const styles = StyleSheet.create({
     image: {
-        width: 380,
-        height: 250,
-        borderRadius: 20
-      },
+      width: 380,
+      height: 250,
+      borderRadius: 20
+    },
     profilePic: {
       width: 50,
       height: 50,
