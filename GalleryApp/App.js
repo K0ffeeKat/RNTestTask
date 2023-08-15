@@ -1,15 +1,10 @@
-import {StyleSheet} from 'react-native';
-import React from 'react';
-import Providers from './stacks/index';
-
-
+import React from 'react'
+import { Providers } from './src/stacks/index'
 
 const App = () => {
   return (
       <Providers />
-  );
-};
+  )
+}
 
-export default App;
-
-const styles = StyleSheet.create({});
+export default App
