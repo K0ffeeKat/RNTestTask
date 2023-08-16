@@ -8,3 +8,10 @@ Things implemented in this project:
 - user can change the view of the list by tapping the switch in the main menu
 - user can create an account or log in with their credentials
 - the authentication is provided by Google Firebase, implemented with MobX
+
+Login credentials
+    login: test@test.com
+    password: 1234567
+
+For any access-related errors try:
+    chmod 755 android/gradlew
