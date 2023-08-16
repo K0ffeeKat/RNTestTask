@@ -1,6 +1,5 @@
 import { StyleSheet, View, Pressable, Text } from 'react-native'
-import React from 'react'
-import auth from '@react-native-firebase/auth'
+import React, { useState } from 'react'
 import { AuthStore } from '../store/authStore'
 import { Input } from '../components/Input'
 import { Button } from '../components/Button'
@@ -9,32 +8,19 @@ import { observer } from 'mobx-react'
 
 export const SignupScreen = observer((props) => {
   const {
-    email,
-    setEmail,
-    password,
-    setPassword,
     errorMessage,
-    setErrorMessage,
-    setUser,
-    cleanUp
+    signUp,
+    cleanErrorLog
   } = AuthStore
 
   const navigation = props.navigation
 
-  const moveToLogin = () => {
-    cleanUp()
-    navigation.replace('Login')
-  }
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
-  const signUp = () => {
-    auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((userCredential) => {
-        setUser(userCredential.user)
-      })
-      .catch(error => {
-        setErrorMessage(error.code)
-      })
+  const moveToLogin = () => {
+    cleanErrorLog()
+    navigation.navigate('Login')
   }
 
   return (
@@ -58,7 +44,7 @@ export const SignupScreen = observer((props) => {
         { email && password 
         ?
         <Button
-          onPress={signUp}
+          onPress={() => signUp(email, password)}
           buttonText='SIGN UP'
         /> 
         : null

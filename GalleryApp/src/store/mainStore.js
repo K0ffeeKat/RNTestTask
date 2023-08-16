@@ -6,7 +6,7 @@ class Store {
   
   currentPhoto = []
 
-  error = []
+  error = ''
 
   constructor(){
     makeAutoObservable(this)
@@ -14,6 +14,7 @@ class Store {
 
   async loadPhotos() {
     try {
+      this.setError('')
       const res = await fetch('https://api.slingacademy.com/v1/sample-data/photos')
       const object = await res.json()
       this.setAllPhotos(object)
@@ -23,7 +24,7 @@ class Store {
   }
 
   setError = (error) => {
-    this.error = error
+    this.error = error.toString()
   }
 
   setAllPhotos = (object) => {

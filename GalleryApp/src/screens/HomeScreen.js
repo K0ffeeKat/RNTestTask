@@ -6,21 +6,21 @@ import { observer } from 'mobx-react'
 import { Button } from '../components/Button'
 import { SwitchStore } from '../store/switchStore'
 import { AuthStore } from '../store/authStore'
-import auth from '@react-native-firebase/auth'
+import { ErrorView } from '../components/ErrorView'
 
 export const HomeScreen = observer(({ navigation }) => {
 
   const isEnabled = SwitchStore.isEnabled
   const { allPhotos, error } = MainStore
-  const { cleanUp } = AuthStore
+  const { signOut } = AuthStore
 
   useEffect(() => {
-    try {
-      MainStore.loadPhotos()
-    } catch (error) {
-      console.error(error)
-    }
+    MainStore.loadPhotos()
   }, [])
+
+  if (error) {
+    return <ErrorView />
+  }
 
   const setColumnSwitch = () => {
     SwitchStore.setIsEnabled()
@@ -29,13 +29,6 @@ export const HomeScreen = observer(({ navigation }) => {
   const handleImagePress = (photo) => {
     MainStore.updateCurrentPhoto(photo)
     navigation.navigate('Info')
-  }
-
-  const signOut = () => {
-    auth()
-      .signOut()
-      .then(cleanUp)
-      .catch(error => console.log(error))
   }
 
   return (

@@ -1,9 +1,8 @@
 import { makeAutoObservable } from "mobx"
+import auth from '@react-native-firebase/auth'
 
 class Auth {
   user = ''
-  email = ''
-  password = ''
   errorMessage = ''
 
 
@@ -31,11 +30,39 @@ class Auth {
     this.errorMessage = text
   }
 
-  cleanUp = () => {
-    this.setEmail('')
-    this.setPassword('')
+  cleanErrorLog = () => {
     this.setErrorMessage('')
   }
+
+  login = (email, password) => {
+    auth()
+      .signInWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        this.setUser(userCredential.user)
+      })
+      .catch(error => {
+        this.setErrorMessage(error.code)
+      })
+  }
+
+  signUp = (email, password) => {
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        this.setUser(userCredential.user)
+      })
+      .catch(error => {
+        this.setErrorMessage(error.code)
+      })
+  }
+
+  signOut = () => {
+    auth()
+      .signOut()
+      .then(this.cleanErrorLogean)
+      .catch(error => console.log(error))
+  }
+
 }
 
 export const AuthStore = new Auth()
