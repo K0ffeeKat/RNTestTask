@@ -7,4 +7,4 @@ Things implemented in this project:
 - user can pinch-zoom a photo if it is in fullscreen
 - user can change the view of the list by tapping the switch in the main menu
 - user can create an account or log in with their credentials
-- the authentication is provided by Google Firebase, implemented with Context API
+- the authentication is provided by Google Firebase, implemented with MobX
