@@ -1,9 +1,9 @@
 import { StyleSheet, View, Pressable } from 'react-native'
 import React from 'react'
-import { ItemInfo } from '../components/app-stack/ItemInfo'
+import { ItemInfo } from '../components/ItemInfo'
 import { MainStore } from '../store/mainStore'
 import { observer } from 'mobx-react'
-import { BackIcon } from '../components/app-stack/BackIcon'
+import { BackIcon } from '../components/BackIcon'
 
 export const InfoScreen = observer(({ navigation }) => {
   const currentPhoto = MainStore.currentPhoto

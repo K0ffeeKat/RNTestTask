@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { observer } from 'mobx-react'
 import { MainStore } from '../store/mainStore'
 import { ReactNativeZoomableView } from '@openspacelabs/react-native-zoomable-view/'
-import { CloseIcon } from '../components/app-stack/CloseIcon'
+import { CloseIcon } from '../components/CloseIcon'
 
 export const ViewScreen = observer(({ navigation }) => {
   const { url } = MainStore.currentPhoto

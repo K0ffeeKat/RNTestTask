@@ -1,9 +1,8 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { useContext } from 'react'
-import { AuthContext } from '../../stacks/AuthProvider'
+import React from 'react'
 
-export const Error = () => {
-  const { errorMessage } = useContext(AuthContext)
+export const Error = (props) => {
+  const errorMessage = props.errorMessage
 
   return (
     <View>

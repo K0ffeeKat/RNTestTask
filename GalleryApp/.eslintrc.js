@@ -5,7 +5,8 @@ module.exports = {
   },
   extends: [
     'standard',
-    'plugin:react/recommended'
+    'plugin:react/recommended',
+    'prettier'
   ],
   overrides: [
     {
@@ -33,6 +34,7 @@ module.exports = {
       {
         endOfLine: 'auto'
       }
-    ]
+    ],
+    'react/prop-types': 0,
   }
 }

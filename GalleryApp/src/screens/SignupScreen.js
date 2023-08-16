@@ -1,52 +1,78 @@
 import { StyleSheet, View, Pressable, Text } from 'react-native'
-import React, { useContext } from 'react'
-import { AuthContext } from '../stacks/AuthProvider'
-import { Input } from '../components/auth-stack/Input'
-import { Button } from '../components/auth-stack/Button'
-import { Error } from '../components/auth-stack/Error'
+import React from 'react'
+import auth from '@react-native-firebase/auth'
+import { AuthStore } from '../store/authStore'
+import { Input } from '../components/Input'
+import { Button } from '../components/Button'
+import { Error } from '../components/Error'
+import { observer } from 'mobx-react'
 
-export const SignupScreen = ({ navigation }) => {
+export const SignupScreen = observer((props) => {
   const {
     email,
     setEmail,
     password,
     setPassword,
-    signUp,
-    errorMessage
-  } = useContext(AuthContext)
+    errorMessage,
+    setErrorMessage,
+    setUser,
+    cleanUp
+  } = AuthStore
+
+  const navigation = props.navigation
+
+  const moveToLogin = () => {
+    cleanUp()
+    navigation.navigate('Login')
+  }
+
+  const signUp = () => {
+    auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then((userCredential) => {
+        setUser(userCredential.user)
+      })
+      .catch(error => {
+        setErrorMessage(error.code)
+      })
+  }
 
   return (
     <View style={styles.main}>
       <View>
-        {errorMessage != null ? <Error /> : null}
+        {errorMessage ? <Error errorMessage={ errorMessage }/> : null}
       </View>
       <View>
         <Input
           placeholder='jane.doe@email.com'
-          onChangeText={(text) => setEmail(text)}
+          onChangeText={setEmail}
         />
         <Input
           placeholder='********'
-          onChangeText={(text) => setPassword(text)}
+          onChangeText={setPassword}
           secureTextEntry={true}
-          inputMarginVertical={10}
+          style={styles.inputWithMargins}
         />
       </View>
       <View style={styles.buttonContainer}>
+        { email && password 
+        ?
         <Button
-          onPress={() => { signUp(email, password) }}
+          onPress={signUp}
           buttonText='SIGN UP'
-        />
+        /> 
+        : null
+        }
         <Pressable
           style={styles.alreadyHaveAccountButton}
-          onPress={() => { navigation.navigate('Login') }}
+          onPress={moveToLogin}
           >
           <Text style={styles.text}>I ALREADY HAVE AN ACCOUNT</Text>
         </Pressable>
       </View>
     </View>
   )
-}
+})
 
 const styles = StyleSheet.create({
   main: {
@@ -64,5 +90,8 @@ const styles = StyleSheet.create({
   },
   alreadyHaveAccountButton: {
     marginTop: 20
+  },
+  inputWithMargins: {
+    marginVertical: 10
   }
 })

@@ -1,11 +1,12 @@
 import { StyleSheet, TextInput } from 'react-native'
 import React from 'react'
+import { observer } from 'mobx-react'
 
-export const Input = (props) => {
+export const Input = observer((props) => {
   const {
     onChangeText,
     placeholder,
-    inputMarginVertical,
+    style,
     secureTextEntry
   } = props
 
@@ -17,9 +18,10 @@ export const Input = (props) => {
       secureTextEntry={secureTextEntry}
       style={[
         styles.textInput,
-        { marginVertical: inputMarginVertical }]}/>
+        style 
+      ]}/>
   )
-}
+})
 
 const styles = StyleSheet.create({
   textInput: {

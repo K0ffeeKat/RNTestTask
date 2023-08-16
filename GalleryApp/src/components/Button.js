@@ -2,7 +2,6 @@ import { StyleSheet, Text, Pressable } from 'react-native'
 import React from 'react'
 
 export const Button = (props) => {
-  // eslint-disable-next-line react/prop-types
   const { onPress, buttonText } = props
 
   return (

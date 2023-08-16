@@ -1,35 +1,41 @@
 import { StyleSheet, View, Switch } from 'react-native'
-import { React, useEffect, useContext } from 'react'
-import { AuthContext } from '../stacks/AuthProvider'
-import { ImageList } from '../components/app-stack/ImageList'
+import { React, useEffect } from 'react'
+import { ImageList } from '../components/ImageList'
 import { MainStore } from '../store/mainStore'
 import { observer } from 'mobx-react'
-import { Button } from '../components/auth-stack/Button'
+import { Button } from '../components/Button'
 import { SwitchStore } from '../store/switchStore'
+import { AuthStore } from '../store/authStore'
+import auth from '@react-native-firebase/auth'
 
 export const HomeScreen = observer(({ navigation }) => {
-  const { signOut } = useContext(AuthContext)
 
   const isEnabled = SwitchStore.isEnabled
-  const allPhotos = MainStore.allPhotos
+  const { allPhotos, error } = MainStore
+  const { cleanUp } = AuthStore
 
   useEffect(() => {
     try {
       MainStore.loadPhotos()
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }, [])
-
-  console.log(allPhotos)
 
   const setColumnSwitch = () => {
     SwitchStore.setIsEnabled()
   }
 
   const handleImagePress = (photo) => {
-    navigation.navigate('Info')
     MainStore.updateCurrentPhoto(photo)
+    navigation.navigate('Info')
+  }
+
+  const signOut = () => {
+    auth()
+      .signOut()
+      .then(cleanUp)
+      .catch(error => console.log(error))
   }
 
   return (
@@ -53,7 +59,7 @@ export const HomeScreen = observer(({ navigation }) => {
       </View>
       <View style={styles.signOutContainer}>
         <Button
-          onPress={() => signOut()}
+          onPress={signOut}
           buttonText="LOG OUT"
         />
       </View>
