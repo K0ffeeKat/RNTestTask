@@ -2,9 +2,9 @@ import { makeAutoObservable } from "mobx"
 
 class Auth {
   user = ''
-  email = null
-  password = null
-  errorMessage = null
+  email = ''
+  password = ''
+  errorMessage = ''
 
 
   constructor(){
@@ -32,9 +32,9 @@ class Auth {
   }
 
   cleanUp = () => {
-    this.setEmail(null)
-    this.setPassword(null)
-    this.setErrorMessage(null)
+    this.setEmail('')
+    this.setPassword('')
+    this.setErrorMessage('')
   }
 }
 

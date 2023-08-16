@@ -23,7 +23,7 @@ export const SignupScreen = observer((props) => {
 
   const moveToLogin = () => {
     cleanUp()
-    navigation.navigate('Login')
+    navigation.replace('Login')
   }
 
   const signUp = () => {

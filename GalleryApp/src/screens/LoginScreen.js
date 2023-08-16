@@ -23,7 +23,7 @@ export const LoginScreen = observer((props) => {
 
   const moveToSignup = () => {
     cleanUp()
-    navigation.navigate('Signup')
+    navigation.replace('Signup')
   }
 
   const login = () => {
@@ -78,7 +78,6 @@ export const LoginScreen = observer((props) => {
           <Text style={styles.text}>CREATE NEW ACCOUNT</Text>
         </Pressable>
       </View>
-
     </View>
   )
 })

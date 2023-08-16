@@ -3,7 +3,7 @@ import { Providers } from './src/stacks/index'
 
 const App = () => {
   return (
-      <Providers />
+    <Providers />
   )
 }
 

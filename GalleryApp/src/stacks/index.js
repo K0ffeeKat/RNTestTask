@@ -3,6 +3,6 @@ import { Routes } from './Routes'
 
 export const Providers = () => {
   return (
-      <Routes />
+    <Routes />
   )
 }
