@@ -59,7 +59,7 @@ class Auth {
   signOut = () => {
     auth()
       .signOut()
-      .then(this.cleanErrorLogean)
+      .then(this.cleanErrorLog())
       .catch(error => console.log(error))
   }
 
