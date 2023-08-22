@@ -27,7 +27,7 @@ export const HomeScreen = observer(({ navigation }) => {
   }
 
   const handleImagePress = (photo) => {
-    MainStore.updateCurrentPhoto(photo)
+    MainStore.setCurrentPhotoId(photo)
     navigation.navigate('Info')
   }
 

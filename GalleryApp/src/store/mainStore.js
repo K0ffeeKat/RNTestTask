@@ -4,7 +4,7 @@ class Store {
 
   allPhotos = []
   
-  currentPhoto = []
+  currentPhotoId = ''
 
   error = ''
 
@@ -31,9 +31,13 @@ class Store {
     this.allPhotos = object.photos
   }
 
-  updateCurrentPhoto = (photo) => {
-      this.currentPhoto = photo
+  setCurrentPhotoId = (photo) => {
+    this.currentPhotoId = photo.id
   }
+
+  get currentPhotoData() {
+    return this.allPhotos.find(photo => photo.id === this.currentPhotoId)
+    }
 
 }
 

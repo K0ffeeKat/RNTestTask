@@ -6,7 +6,7 @@ import { observer } from 'mobx-react'
 import { BackIcon } from '../components/BackIcon'
 
 export const InfoScreen = observer(({ navigation }) => {
-  const currentPhoto = MainStore.currentPhoto
+  const currentPhotoData = MainStore.currentPhotoData
 
   const handleFullscreenView = () => {
     navigation.navigate('View')
@@ -22,7 +22,7 @@ export const InfoScreen = observer(({ navigation }) => {
       </Pressable>
       <ItemInfo
         onImagePress={handleFullscreenView}
-        currentPhotoData={currentPhoto}
+        currentPhotoData={currentPhotoData}
         navigation={navigation}/>
     </View>
   )

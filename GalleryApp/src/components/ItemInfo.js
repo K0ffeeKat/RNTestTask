@@ -2,10 +2,8 @@ import { StyleSheet, Text, View, Image, Pressable } from 'react-native'
 import React from 'react'
 
 export const ItemInfo = (props) => {
-  // eslint-disable-next-line react/prop-types
   const { url, title, description, user } = props.currentPhotoData
 
-  // eslint-disable-next-line react/prop-types
   const { onImagePress } = props
 
   return (

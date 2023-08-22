@@ -6,7 +6,7 @@ import { ReactNativeZoomableView } from '@openspacelabs/react-native-zoomable-vi
 import { CloseIcon } from '../components/CloseIcon'
 
 export const ViewScreen = observer(({ navigation }) => {
-  const { url } = MainStore.currentPhoto
+  const { url } = MainStore.currentPhotoData
 
   const [ratio, setRatio] = useState(1)
 
